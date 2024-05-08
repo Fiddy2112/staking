@@ -19,10 +19,9 @@ const alchemy = new Alchemy(settings);
 
 app.get("/getwalletbalance", async (req, res) => {
   try {
+    const address = req.query.address;
     // Get all outbound transfers for a provided address
-    const response = await alchemy.core.getTokenBalances(
-      "0x994b342dd87fc825f66e51ffa3ef71ad818b6893"
-    );
+    const response = await alchemy.core.getBalance(address);
     console.log(response);
     return res.status(200).json(response);
   } catch (err) {
